@@ -80,6 +80,12 @@ module.exports = function (options) {
             cssRule.push('    width: ' + width + ';');
             cssRule.push('    height: ' + height + ';');
         }
+        if (options.addInlineBlock) {
+            cssRule.push('    display: inline-block;');
+        }
+        if (options.addEmptyContent) {
+            cssRule.push('    content: "";');
+        }
         cssRule.push('}');
         return cssRule.join('\n');
     }
@@ -96,14 +102,14 @@ module.exports = function (options) {
         var height = svgel.getAttribute('height');
 
         if (width && !isNaN(width)) {
-            width = width + 'px';
+            width = Math.ceil(width) + 'px';
         }
 
         if (height && !isNaN(height)) {
-            height = height + 'px';
+            height = Math.ceil(height) + 'px';
         }
 
-        return { width: width, height: height };
+        return {width: width, height: height, svgContent};
     }
 
     var cssRules = [];
