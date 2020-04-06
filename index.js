@@ -86,6 +86,14 @@ module.exports = function (options) {
         if (options.addEmptyContent) {
             cssRule.push('    content: "";');
         }
+        
+        if (options.addNoRepeat) {
+            cssRule.push('    background-repeat: no-repeat;');
+        }
+        
+        if (options.addBgPositionCenter) {
+            cssRule.push('    background-position: 50% 50%;');
+        }
         cssRule.push('}');
         return cssRule.join('\n');
     }
